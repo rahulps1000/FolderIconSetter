@@ -1,0 +1,38 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        x:Key="RoundedFolderTextBox"
+        TargetType="TextBox">
+        <Style.Resources>
+            <Style TargetType="{x:Type Border}">
+                <Setter Property="CornerRadius" Value="5" />
+                <Setter Property="Padding" Value="10,5,10,5" />
+            </Style>
+            <VisualBrush
+                x:Key="CueBannerBrush"
+                AlignmentX="Left"
+                AlignmentY="Center"
+                Stretch="None">
+                <VisualBrush.Visual>
+                    <Label
+                        Content="C:\folder"
+                        FontSize="12"
+                        Foreground="#999" />
+                </VisualBrush.Visual>
+            </VisualBrush>
+        </Style.Resources>
+        <Style.Triggers>
+            <Trigger Property="Text" Value="{x:Static sys:String.Empty}">
+                <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+            </Trigger>
+            <Trigger Property="Text" Value="{x:Null}">
+                <Setter Property="Background" Value="{StaticResource CueBannerBrush}" />
+            </Trigger>
+            <Trigger Property="IsKeyboardFocused" Value="True">
+                <Setter Property="Background" Value="#232323" />
+            </Trigger>
+        </Style.Triggers>
+        <Setter Property="Background" Value="#232323" />
+        <Setter Property="Foreground" Value="White" />
+    </Style>
+</ResourceDictionary>
