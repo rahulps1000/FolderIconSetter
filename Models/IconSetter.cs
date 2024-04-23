@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using FolderIconSetter.Core;
 
@@ -8,11 +9,19 @@ namespace FolderIconSetter.Models
     {
 
         private String folderPath;
-        private String _iconPath;
+        private String iconPath;
 
         public String FolderPath
         {
-            get { return folderPath; }
+            get { 
+                if(folderPath == "")
+                {
+                    return folderPath;
+                } else
+                {
+                    return folderPath + "\\";
+                }
+            }
             set {
                 folderPath = value; 
                 OnProprtyChanged();
@@ -21,9 +30,9 @@ namespace FolderIconSetter.Models
 
         public String IconPath
         {   
-            get { return _iconPath; }
+            get { return iconPath; }
             set {
-                _iconPath = value; 
+                iconPath = value; 
                 OnProprtyChanged();
             }
         }
@@ -65,7 +74,7 @@ namespace FolderIconSetter.Models
             if (result == CommonFileDialogResult.Ok)
             {
                 string filePath = dialog.FileName;
-                if (System.IO.Path.GetExtension(filePath).ToLower() == ".ico")
+                if (Path.GetExtension(filePath).ToLower() == ".ico")
                 {
                     IconPath = filePath;
                 }
@@ -74,6 +83,30 @@ namespace FolderIconSetter.Models
 
         public void SetIcon()
         {
+            var iconName = "icon.ico";
+            var iniFile = FolderPath + "desktop.ini";
+
+            if (File.Exists(FolderPath + iconName))
+            {
+                Random r = new Random();
+                while (File.Exists(FolderPath + iconName))
+                {
+                    iconName = "icon_" + r.Next() + ".ico";
+                }
+            }
+
+            File.Copy(IconPath, FolderPath + iconName);
+
+            StreamWriter sw = new StreamWriter(iniFile);
+
+            sw.WriteLine("[.ShellClassInfo]");
+            sw.WriteLine("IconResource=" + iconName + ",0");
+
+            sw.Close();
+
+            File.SetAttributes(iniFile, File.GetAttributes(iniFile) | FileAttributes.Hidden);
+            File.SetAttributes(FolderPath + iconName, File.GetAttributes(FolderPath + iconName) | FileAttributes.Hidden);
+            File.SetAttributes(FolderPath, File.GetAttributes(FolderPath) | FileAttributes.System);
 
         }
     }

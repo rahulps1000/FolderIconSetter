@@ -142,7 +142,7 @@
                 FontSize="16"
                 FontWeight="Bold"
                 Foreground="White"
-                Style="{StaticResource RoundedButton}" />
+                Style="{StaticResource RoundedButton}" Click="setIcon" />
             <Image
                 Grid.Row="5"
                 Width="13"

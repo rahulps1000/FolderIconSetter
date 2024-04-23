@@ -63,5 +63,20 @@ namespace FolderIconSetter
                 Process.Start("https://github.com/rahulps1000/FolderIconSetter");
             }
         }
+
+        private void setIcon(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                iconSetter.SetIcon();
+                MessageBox.Show("Icon Set");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                MessageBox.Show(ex.Message);
+            }
+
+        }
     }
 }
