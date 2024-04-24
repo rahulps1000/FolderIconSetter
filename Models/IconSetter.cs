@@ -1,7 +1,8 @@
-﻿using System;
+﻿using FolderIconSetter.Core;
+using System;
 using System.IO;
-using Microsoft.WindowsAPICodePack.Dialogs;
-using FolderIconSetter.Core;
+using System.Windows.Forms;
+//using Microsoft.WindowsAPICodePack.Dialogs;
 
 namespace FolderIconSetter.Models
 {
@@ -13,26 +14,30 @@ namespace FolderIconSetter.Models
 
         public String FolderPath
         {
-            get { 
-                if(folderPath == "")
+            get
+            {
+                if (folderPath == "")
                 {
                     return folderPath;
-                } else
+                }
+                else
                 {
                     return folderPath + "\\";
                 }
             }
-            set {
-                folderPath = value; 
+            set
+            {
+                folderPath = value;
                 OnProprtyChanged();
             }
         }
 
         public String IconPath
-        {   
+        {
             get { return iconPath; }
-            set {
-                iconPath = value; 
+            set
+            {
+                iconPath = value;
                 OnProprtyChanged();
             }
         }
@@ -43,41 +48,67 @@ namespace FolderIconSetter.Models
             IconPath = String.Empty;
         }
 
-        public void FolderSelector ()
+        public void FolderSelector()
         {
-            var dialog = new CommonOpenFileDialog
-            {
-                IsFolderPicker = true,
-                Title = "Select a folder"
-            };
+            //var dialog = new CommonOpenFileDialog
+            //{
+            //    IsFolderPicker = true,
+            //    Title = "Select a folder"
+            //};
 
-            CommonFileDialogResult result = dialog.ShowDialog();
+            //CommonFileDialogResult result = dialog.ShowDialog();
 
-            if (result == CommonFileDialogResult.Ok)
+            //if (result == CommonFileDialogResult.Ok)
+            //{
+            //    FolderPath = dialog.FileName;
+            //}
+
+            FolderBrowserDialog folderDialog = new FolderBrowserDialog();
+            folderDialog.RootFolder = Environment.SpecialFolder.Desktop;
+            folderDialog.Description = "Select the folder to which the icon need to be set";
+            folderDialog.ShowNewFolderButton = true;
+
+            DialogResult x = folderDialog.ShowDialog();
+
+            if (x == DialogResult.OK)
             {
-                FolderPath = dialog.FileName;
+                string selectedPath = folderDialog.SelectedPath;
+                FolderPath = selectedPath;
             }
 
         }
 
-        public void IconSelector ()
+        public void IconSelector()
         {
-            var dialog = new CommonOpenFileDialog
+            //var dialog = new CommonOpenFileDialog
+            //{
+            //    Title = "Select an ICO File"
+            //};
+
+            //dialog.Filters.Add(new CommonFileDialogFilter("ICO Files", "*.ico"));
+
+            //CommonFileDialogResult result = dialog.ShowDialog();
+
+            //if (result == CommonFileDialogResult.Ok)
+            //{
+            //    string filePath = dialog.FileName;
+            //    if (Path.GetExtension(filePath).ToLower() == ".ico")
+            //    {
+            //        IconPath = filePath;
+            //    }
+            //}
+
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Icon Files (*.ico)|*.ico";
+            openFileDialog.InitialDirectory = Environment.SpecialFolder.Desktop.ToString();
+            openFileDialog.Title = "Select an Icon File";
+
+            DialogResult result = openFileDialog.ShowDialog();
+
+            if (result == DialogResult.OK)
             {
-                Title = "Select an ICO File"
-            };
-
-            dialog.Filters.Add(new CommonFileDialogFilter("ICO Files", "*.ico"));
-
-            CommonFileDialogResult result = dialog.ShowDialog();
-
-            if (result == CommonFileDialogResult.Ok)
-            {
-                string filePath = dialog.FileName;
-                if (Path.GetExtension(filePath).ToLower() == ".ico")
-                {
-                    IconPath = filePath;
-                }
+                string selectedPath = openFileDialog.FileName;
+                IconPath = selectedPath;
             }
         }
 
