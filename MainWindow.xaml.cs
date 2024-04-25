@@ -1,4 +1,5 @@
 ﻿using FolderIconSetter.Models;
+using FolderIconSetter.Windows;
 using System;
 using System.Diagnostics;
 using System.Windows;
@@ -18,6 +19,7 @@ namespace FolderIconSetter
             InitializeComponent();
             iconSetter = new IconSetter();
             this.DataContext = iconSetter;
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
 
 
@@ -29,7 +31,8 @@ namespace FolderIconSetter
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                CustomMessageBox customMessageBox = new CustomMessageBox();
+                customMessageBox.Show("Error", ex);
             }
         }
 
@@ -42,7 +45,8 @@ namespace FolderIconSetter
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                MessageBox.Show(ex.Message);
+                CustomMessageBox customMessageBox = new CustomMessageBox();
+                customMessageBox.Show("Error", ex);
             }
         }
 
@@ -69,12 +73,14 @@ namespace FolderIconSetter
             try
             {
                 iconSetter.SetIcon();
-                MessageBox.Show("Icon Set");
+                CustomMessageBox customMessageBox = new CustomMessageBox();
+                customMessageBox.Show("Success","Icon is Successfully set on the Folder");
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                MessageBox.Show(ex.Message);
+                CustomMessageBox customMessageBox = new CustomMessageBox();
+                customMessageBox.Show("Error", ex);
             }
 
         }

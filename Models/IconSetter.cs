@@ -16,7 +16,7 @@ namespace FolderIconSetter.Models
         {
             get
             {
-                if (folderPath == "")
+                if (folderPath == String.Empty)
                 {
                     return folderPath;
                 }
@@ -114,6 +114,22 @@ namespace FolderIconSetter.Models
 
         public void SetIcon()
         {
+            if (FolderPath == String.Empty)
+            {
+                throw new Exception("Folder Path is Cannot be Empty");
+            }
+            
+
+            if (IconPath == String.Empty)
+            {
+                throw new Exception("Icon Path is Cannot be Empty");
+            }
+
+            if (!Directory.Exists(FolderPath) && FolderPath != String.Empty)
+            {
+                Directory.CreateDirectory(FolderPath);
+            }
+
             var iconName = "icon.ico";
             var iniFile = FolderPath + "desktop.ini";
 
@@ -124,6 +140,9 @@ namespace FolderIconSetter.Models
                 {
                     iconName = "icon_" + r.Next() + ".ico";
                 }
+            } else
+            {
+                throw new Exception("Invalid Icon Path");
             }
 
             File.Copy(IconPath, FolderPath + iconName);
