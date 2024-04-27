@@ -34,6 +34,7 @@
                         Margin="15,0,0,0"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Center"
+                        FontFamily="./Fonts/#Roboto"
                         FontSize="19"
                         Foreground="White"
                         Text="{Binding Title}" />
@@ -53,6 +54,7 @@
                     MaxWidth="460"
                     Margin="10,0,10,0"
                     HorizontalAlignment="Center"
+                    FontFamily="./Fonts/#Roboto"
                     FontSize="16"
                     Foreground="White"
                     Text="{Binding Text}"
@@ -69,6 +71,7 @@
                         Click="reportError"
                         Content="Report Error"
                         Cursor="Hand"
+                        FontFamily="./Fonts/#Roboto"
                         FontSize="17"
                         Foreground="White"
                         Style="{StaticResource RoundedButton}"
@@ -79,6 +82,7 @@
                         Click="closeApp"
                         Content="Close"
                         Cursor="Hand"
+                        FontFamily="./Fonts/#Roboto"
                         FontSize="17"
                         Foreground="White"
                         Style="{StaticResource RoundedButton}" />

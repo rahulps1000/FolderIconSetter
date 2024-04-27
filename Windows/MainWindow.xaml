@@ -35,6 +35,7 @@
                         Margin="15,0,0,0"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Center"
+                        FontFamily="./Fonts/#Roboto"
                         FontSize="19"
                         Foreground="White"
                         Text="Folder Icon Setter" />
@@ -54,19 +55,25 @@
                 Margin="20,0,20,0"
                 VerticalAlignment="Center">
                 <TextBlock
+                    FontFamily="./Fonts/#Roboto"
                     FontSize="18"
                     FontWeight="Bold"
                     Foreground="White"
                     Text="Choose Folder" />
                 <TextBlock
+                    FontFamily="./Fonts/#Roboto"
                     FontSize="12"
                     Foreground="White"
                     Text="Select the folder you want to apply the icon to." />
                 <Label
                     Content="Folder Path"
+                    FontFamily="./Fonts/#Roboto"
                     FontSize="14"
                     Foreground="White" />
-                <TextBox Style="{StaticResource RoundedFolderTextBox}" Text="{Binding FolderPath}" />
+                <TextBox
+                    FontFamily="./Fonts/#Roboto"
+                    Style="{StaticResource RoundedFolderTextBox}"
+                    Text="{Binding FolderPath}" />
                 <Button
                     Height="30"
                     MinWidth="80"
@@ -86,7 +93,7 @@
                             Source="/Images/folder.png"
                             Stretch="Uniform" />
                         <Separator Width="5" Visibility="Hidden" />
-                        <TextBlock Text="Browse" />
+                        <TextBlock FontFamily="./Fonts/#Roboto" Text="Browse" />
                     </StackPanel>
                 </Button>
             </StackPanel>
@@ -95,11 +102,13 @@
                 Margin="20,0,20,0"
                 VerticalAlignment="Center">
                 <TextBlock
+                    FontFamily="./Fonts/#Roboto"
                     FontSize="18"
                     FontWeight="Bold"
                     Foreground="White"
                     Text="Choose Icon" />
                 <TextBlock
+                    FontFamily="./Fonts/#Roboto"
                     FontSize="12"
                     Foreground="White"
                     Text="Select the icon you want to apply to the folder." />
@@ -107,7 +116,10 @@
                     Content="Icon Path"
                     FontSize="14"
                     Foreground="White" />
-                <TextBox Style="{StaticResource RoundedIconTextBox}" Text="{Binding IconPath}" />
+                <TextBox
+                    FontFamily="./Fonts/#Roboto"
+                    Style="{StaticResource RoundedIconTextBox}"
+                    Text="{Binding IconPath}" />
                 <Button
                     Height="30"
                     MinWidth="80"
@@ -127,7 +139,7 @@
                             Source="/Images/folder.png"
                             Stretch="Uniform" />
                         <Separator Width="5" Visibility="Hidden" />
-                        <TextBlock Text="Browse" />
+                        <TextBlock FontFamily="./Fonts/#Roboto" Text="Browse" />
                     </StackPanel>
                 </Button>
             </StackPanel>
@@ -137,12 +149,14 @@
                 Height="40"
                 VerticalAlignment="Bottom"
                 Background="#212121"
+                Click="setIcon"
                 Content="Set Icon"
                 Cursor="Hand"
+                FontFamily="./Fonts/#Roboto"
                 FontSize="16"
                 FontWeight="Bold"
                 Foreground="White"
-                Style="{StaticResource RoundedButton}" Click="setIcon" />
+                Style="{StaticResource RoundedButton}" />
             <Image
                 Grid.Row="5"
                 Width="13"

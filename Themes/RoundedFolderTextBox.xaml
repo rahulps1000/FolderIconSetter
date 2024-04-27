@@ -16,6 +16,7 @@
                 <VisualBrush.Visual>
                     <Label
                         Content="C:\folder"
+                        FontFamily="./Fonts/#Roboto"
                         FontSize="12"
                         Foreground="#999" />
                 </VisualBrush.Visual>
