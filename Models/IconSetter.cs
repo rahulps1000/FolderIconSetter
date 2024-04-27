@@ -130,6 +130,11 @@ namespace FolderIconSetter.Models
                 Directory.CreateDirectory(FolderPath);
             }
 
+            if (!File.Exists(IconPath))
+            {
+                throw new Exception("Icon Path Invalid");
+            }
+
             var iconName = "icon.ico";
             var iniFile = FolderPath + "desktop.ini";
 
@@ -140,9 +145,6 @@ namespace FolderIconSetter.Models
                 {
                     iconName = "icon_" + r.Next() + ".ico";
                 }
-            } else
-            {
-                throw new Exception("Invalid Icon Path");
             }
 
             File.Copy(IconPath, FolderPath + iconName);
